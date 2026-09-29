@@ -142,12 +142,14 @@ void mdns_loop(mdns_ctx_t *ctx) {
             }
         }
 
-        /* Periodic announcement heartbeat every 30 seconds (6 x 5s) */
-        if (++heartbeat_ticks >= 6) {
-            heartbeat_ticks = 0;
-            if (ctx->hostname[0] != '\0') {
-                service_announce_send(ctx->sock, ctx->hostname, ctx->hw_addr,
-                                      ctx->port, ctx->iface_addr);
+        if (pr == 0) {
+            /* 5-second poll timeout with no traffic: trigger 30s heartbeat */
+            if (++heartbeat_ticks >= 6) {
+                heartbeat_ticks = 0;
+                if (ctx->hostname[0] != '\0') {
+                    service_announce_send(ctx->sock, ctx->hostname, ctx->hw_addr,
+                                          ctx->port, ctx->iface_addr);
+                }
             }
         }
     }

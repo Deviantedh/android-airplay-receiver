@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -108,6 +109,7 @@ static void append_raop_txt(pkt_t *p) {
     pkt_txt_kv(p, "ch=2");
     pkt_txt_kv(p, "cn=0,1");
     pkt_txt_kv(p, "et=0,1");
+    pkt_txt_kv(p, "ek=1");
     pkt_txt_kv(p, "sv=false");
     pkt_txt_kv(p, "da=true");
     pkt_txt_kv(p, "sr=44100");
@@ -118,6 +120,7 @@ static void append_raop_txt(pkt_t *p) {
     pkt_txt_kv(p, "md=0,1,2");
     pkt_txt_kv(p, "vs=105.1");
     pkt_txt_kv(p, "am=AirPort4,107");
+    pkt_txt_kv(p, "fv=76400.10");
     pkt_txt_kv(p, "sf=0x4");
 }
 
@@ -135,12 +138,20 @@ static void send_pkt(int sock, const uint8_t *buf, size_t len) {
 
 /* ── Build & send announcement ──────────────────────────────────────────── */
 
+static time_t g_last_announce_time = 0;
+
 void service_announce_send(int sock,
                            const char *hostname,
                            const uint8_t hw_addr[6],
                            uint16_t port,
                            const char *iface_addr)
 {
+    time_t now = time(NULL);
+    if (now - g_last_announce_time < 2) {
+        /* Rate limit: maximum 1 announcement per 2 seconds to avoid Wi-Fi storms */
+        return;
+    }
+    g_last_announce_time = now;
     char mac_str[18];
     snprintf(mac_str, sizeof(mac_str), "%02X%02X%02X%02X%02X%02X",
              hw_addr[0], hw_addr[1], hw_addr[2],
