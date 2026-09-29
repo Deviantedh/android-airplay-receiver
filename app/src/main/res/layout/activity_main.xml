@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Classic iPod touch (iPhone OS 1-3 / iOS 4-6) "Now Playing" Interface
+    Optimized for Samsung Galaxy Mini 2 (320x480 HVGA, Android 2.3.6)
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000000">
+
+    <!-- Top Navigation Bar: Classic iPod touch Glossy Dark Glass Header -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_ipod_header"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <!-- Left Button: Classic iPod Back / Library Button -->
+        <TextView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_ipod_glass_btn"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="◀"
+            android:textColor="#e8ecf2"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:shadowColor="#000000"
+            android:shadowDx="0"
+            android:shadowDy="-1"
+            android:shadowRadius="0.5" />
+
+        <!-- Center Metadata: 3 Stacked Lines (Artist, Title, Album) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/btn_back"
+            android:layout_toLeftOf="@+id/status"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- Line 1: Artist -->
+            <TextView
+                android:id="@+id/track_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Подключитесь через AirPlay"
+                android:textColor="#a6abb6"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true" />
+
+            <!-- Line 2: Track Title -->
+            <TextView
+                android:id="@+id/track_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:text="AirPlay"
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:shadowColor="#000000"
+                android:shadowDx="0"
+                android:shadowDy="1"
+                android:shadowRadius="1"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true" />
+
+            <!-- Line 3: Album -->
+            <TextView
+                android:id="@+id/track_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Receiver"
+                android:textColor="#888e99"
+                android:textSize="9sp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true" />
+        </LinearLayout>
+
+        <!-- Right Button: Classic iPod Status Pill -->
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_ipod_glass_btn"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="○ Ожидание…"
+            android:textColor="#d2d7e0"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:shadowColor="#000000"
+            android:shadowDx="0"
+            android:shadowDy="-1"
+            android:shadowRadius="0.5" />
+    </RelativeLayout>
+
+    <!-- Center Canvas: Full-Bleed 1:1 Square Album Artwork (Edge-to-Edge) -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#000000"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/art"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/art_placeholder"
+            android:contentDescription="@string/art_desc" />
+    </RelativeLayout>
+
+    <!-- Bottom Control Dock: Classic iPod touch Dark Glossy Media Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:background="@drawable/bg_ipod_dock"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="6dp"
+        android:paddingBottom="4dp">
+
+        <!-- Upper Row: Transport Controls (|<<, ▶/❚❚, >>|) -->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="2dp">
+
+            <ImageButton
+                android:id="@+id/btn_prev"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_ipod_transport_btn"
+                android:src="@android:drawable/ic_media_previous"
+                android:scaleType="centerInside"
+                android:focusable="true"
+                android:clickable="true"
+                android:contentDescription="Previous" />
+
+            <ImageButton
+                android:id="@+id/btn_play_pause"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="28dp"
+                android:background="@drawable/bg_ipod_transport_btn"
+                android:src="@android:drawable/ic_media_play"
+                android:scaleType="centerInside"
+                android:focusable="true"
+                android:clickable="true"
+                android:contentDescription="Play/Pause" />
+
+            <ImageButton
+                android:id="@+id/btn_next"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_ipod_transport_btn"
+                android:src="@android:drawable/ic_media_next"
+                android:scaleType="centerInside"
+                android:focusable="true"
+                android:clickable="true"
+                android:contentDescription="Next" />
+        </LinearLayout>
+
+        <!-- Lower Row: Scrubber Slider with Left/Right Timestamps -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/time_elapsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00"
+                android:textColor="#b0b6c2"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/seek_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="1000"
+                android:progress="0"
+                android:progressDrawable="@drawable/ios6_scrubber_track"
+                android:thumb="@drawable/ios6_scrubber_thumb"
+                android:thumbOffset="8dp"
+                android:maxHeight="5dp"
+                android:minHeight="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+
+            <TextView
+                android:id="@+id/time_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-:--"
+                android:textColor="#b0b6c2"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

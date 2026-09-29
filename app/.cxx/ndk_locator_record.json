@@ -1,0 +1,41 @@
+{
+  "ndkFolder": "/Users/devianted/android-ndk-r14b",
+  "messages": [
+    {
+      "level": "INFO",
+      "message": "android.ndkVersion from module build.gradle is not set"
+    },
+    {
+      "level": "INFO",
+      "message": "ndk.dir in local.properties is /Users/devianted/android-ndk-r14b"
+    },
+    {
+      "level": "INFO",
+      "message": "ANDROID_NDK_HOME environment variable is not set"
+    },
+    {
+      "level": "INFO",
+      "message": "sdkFolder is /opt/homebrew/share/android-commandlinetools"
+    },
+    {
+      "level": "INFO",
+      "message": "NDK side-by-side folder from sdkFolder /opt/homebrew/share/android-commandlinetools/ndk does not exist"
+    },
+    {
+      "level": "INFO",
+      "message": "Considering /Users/devianted/android-ndk-r14b by ndk.dir"
+    },
+    {
+      "level": "INFO",
+      "message": "Considering /opt/homebrew/share/android-commandlinetools/ndk-bundle in SDK ndk-bundle folder"
+    },
+    {
+      "level": "INFO",
+      "message": "Rejected /opt/homebrew/share/android-commandlinetools/ndk-bundle in SDK ndk-bundle folder because that location has no source.properties"
+    },
+    {
+      "level": "INFO",
+      "message": "Found requested ndk.dir (/Users/devianted/android-ndk-r14b) which has version 14.1.3816874"
+    }
+  ]
+}

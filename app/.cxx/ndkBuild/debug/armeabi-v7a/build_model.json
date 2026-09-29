@@ -1,0 +1,146 @@
+{
+  "abi": "ARMEABI_V7A",
+  "abiPlatformVersion": 9,
+  "buildSettings": {
+    "environmentVariables": []
+  },
+  "cxxBuildFolder": "/Users/devianted/Documents/antigravity/splendid-darwin/app/.cxx/ndkBuild/debug/armeabi-v7a",
+  "info": {
+    "abi": "ARMEABI_V7A",
+    "bitness": 32,
+    "deprecated": false,
+    "default": true
+  },
+  "originalCxxBuildFolder": "/Users/devianted/Documents/antigravity/splendid-darwin/app/.cxx/ndkBuild/debug/armeabi-v7a",
+  "variant": {
+    "buildSystemArgumentList": [
+      "APP_PLATFORM\u003dandroid-10",
+      "APP_ABI\u003darmeabi-v7a",
+      "APP_STL\u003dc++_static",
+      "APP_OPTIM\u003drelease",
+      "V\u003d1"
+    ],
+    "buildTargetSet": [],
+    "cFlagsList": [],
+    "cmakeSettingsConfiguration": "android-gradle-plugin-predetermined-name",
+    "cppFlagsList": [],
+    "isDebuggableEnabled": true,
+    "module": {
+      "buildSystem": "NDK_BUILD",
+      "cmakeToolchainFile": "/Users/devianted/android-ndk-r14b/build/cmake/android.toolchain.cmake",
+      "cxxFolder": "/Users/devianted/Documents/antigravity/splendid-darwin/app/.cxx",
+      "gradleModulePathName": ":app",
+      "intermediatesFolder": "/Users/devianted/Documents/antigravity/splendid-darwin/app/build/intermediates",
+      "makeFile": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+      "moduleBuildFile": "/Users/devianted/Documents/antigravity/splendid-darwin/app/build.gradle",
+      "moduleRootFolder": "/Users/devianted/Documents/antigravity/splendid-darwin/app",
+      "ndkDefaultAbiList": [
+        "ARMEABI",
+        "ARMEABI_V7A",
+        "X86",
+        "MIPS"
+      ],
+      "ndkFolder": "/Users/devianted/android-ndk-r14b",
+      "ndkMetaAbiList": [
+        {
+          "abi": "ARMEABI",
+          "bitness": 32,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "ARMEABI_V7A",
+          "bitness": 32,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "ARM64_V8A",
+          "bitness": 64,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "X86",
+          "bitness": 32,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "X86_64",
+          "bitness": 64,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "MIPS",
+          "bitness": 32,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "MIPS64",
+          "bitness": 64,
+          "deprecated": false,
+          "default": true
+        }
+      ],
+      "ndkSupportedAbiList": [
+        "ARMEABI",
+        "ARMEABI_V7A",
+        "X86",
+        "MIPS"
+      ],
+      "ndkVersion": "14.1.3816874",
+      "project": {
+        "compilerSettingsCacheFolder": "/Users/devianted/Documents/antigravity/splendid-darwin/.cxx",
+        "cxxFolder": "/Users/devianted/Documents/antigravity/splendid-darwin/.cxx",
+        "isBuildOnlyTargetAbiEnabled": true,
+        "isCmakeBuildCohabitationEnabled": false,
+        "isNativeCompilerSettingsCacheEnabled": false,
+        "rootBuildGradleFolder": "/Users/devianted/Documents/antigravity/splendid-darwin",
+        "sdkFolder": "/opt/homebrew/share/android-commandlinetools"
+      },
+      "splitsAbiFilterSet": [],
+      "stlSharedObjectMap": {
+        "GNUSTL_SHARED": {
+          "ARMEABI": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi/libgnustl_shared.so",
+          "ARMEABI_V7A": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/libgnustl_shared.so",
+          "ARM64_V8A": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/gnu-libstdc++/4.9/libs/arm64-v8a/libgnustl_shared.so",
+          "X86": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86/libgnustl_shared.so",
+          "X86_64": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/gnu-libstdc++/4.9/libs/x86_64/libgnustl_shared.so",
+          "MIPS": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips/libgnustl_shared.so",
+          "MIPS64": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips64/libgnustl_shared.so"
+        },
+        "GNUSTL_STATIC": {},
+        "LIBCXX_SHARED": {
+          "ARMEABI": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/llvm-libc++/libs/armeabi/libc++_shared.so",
+          "ARMEABI_V7A": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libc++_shared.so",
+          "ARM64_V8A": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++_shared.so",
+          "X86": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/llvm-libc++/libs/x86/libc++_shared.so",
+          "X86_64": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/llvm-libc++/libs/x86_64/libc++_shared.so",
+          "MIPS": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/llvm-libc++/libs/mips/libc++_shared.so",
+          "MIPS64": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/llvm-libc++/libs/mips64/libc++_shared.so"
+        },
+        "LIBCXX_STATIC": {},
+        "NONE": {},
+        "STLPORT_SHARED": {
+          "ARMEABI": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/stlport/libs/armeabi/libstlport_shared.so",
+          "ARMEABI_V7A": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/stlport/libs/armeabi-v7a/libstlport_shared.so",
+          "ARM64_V8A": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/stlport/libs/arm64-v8a/libstlport_shared.so",
+          "X86": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/stlport/libs/x86/libstlport_shared.so",
+          "X86_64": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/stlport/libs/x86_64/libstlport_shared.so",
+          "MIPS": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/stlport/libs/mips/libstlport_shared.so",
+          "MIPS64": "/Users/devianted/android-ndk-r14b/sources/cxx-stl/stlport/libs/mips64/libstlport_shared.so"
+        },
+        "STLPORT_STATIC": {},
+        "SYSTEM": {}
+      }
+    },
+    "objFolder": "/Users/devianted/Documents/antigravity/splendid-darwin/app/build/intermediates/ndkBuild/debug/obj/local",
+    "variantName": "debug",
+    "validAbiList": [
+      "ARMEABI_V7A"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Classic iOS 6 Metallic Chrome Scrubber Knob -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer shadow ring -->
+    <item>
+        <shape android:shape="oval">
+            <size android:width="16dp" android:height="16dp" />
+            <solid android:color="#0a0b0d" />
+        </shape>
+    </item>
+    <!-- Brushed chrome knob -->
+    <item
+        android:left="1dp"
+        android:top="1dp"
+        android:right="1dp"
+        android:bottom="1dp">
+        <shape android:shape="oval">
+            <gradient
+                android:startColor="#ffffff"
+                android:centerColor="#dbe0e6"
+                android:endColor="#8e95a0"
+                android:angle="270" />
+            <stroke
+                android:width="1dp"
+                android:color="#4b5058" />
+        </shape>
+    </item>
+    <!-- Center indent dot -->
+    <item
+        android:left="6dp"
+        android:top="6dp"
+        android:right="6dp"
+        android:bottom="6dp">
+        <shape android:shape="oval">
+            <solid android:color="#7b818c" />
+        </shape>
+    </item>
+</layer-list>

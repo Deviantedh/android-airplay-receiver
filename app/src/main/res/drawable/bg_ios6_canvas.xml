@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Classic iOS 6 Dark Slate Canvas Background -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="#22252b"
+        android:centerColor="#141518"
+        android:endColor="#0a0b0d"
+        android:angle="270" />
+</shape>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Apple TV / CarPlay Glass Status Pill -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="#252f40"
+        android:endColor="#141923"
+        android:angle="270" />
+    <stroke
+        android:width="1dp"
+        android:color="#3d4c65" />
+    <corners android:radius="20dp" />
+</shape>

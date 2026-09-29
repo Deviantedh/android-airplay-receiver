@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Classic iOS 6 Play/Pause Glossy Metallic Center Button -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="oval">
+            <gradient
+                android:startColor="#0e0f12"
+                android:centerColor="#1a1c22"
+                android:endColor="#2e323b"
+                android:angle="270" />
+            <stroke
+                android:width="2dp"
+                android:color="#363942" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:startColor="#585f6d"
+                android:centerColor="#2b2f38"
+                android:endColor="#191a1e"
+                android:angle="270" />
+            <stroke
+                android:width="2dp"
+                android:color="#717a8c" />
+        </shape>
+    </item>
+</selector>

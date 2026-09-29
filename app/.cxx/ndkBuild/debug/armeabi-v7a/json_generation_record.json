@@ -1,0 +1,68 @@
+[
+  {
+    "level": "WARN",
+    "message": "Expected platform folder platforms/android-10, using platform API 9 instead.",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "Start JSON generation. Platform version: 9 min SDK version: armeabi-v7a",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "rebuilding JSON /Users/devianted/Documents/antigravity/splendid-darwin/app/.cxx/ndkBuild/debug/armeabi-v7a/android_gradle_build.json due to:",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "- expected json /Users/devianted/Documents/antigravity/splendid-darwin/app/.cxx/ndkBuild/debug/armeabi-v7a/android_gradle_build.json file is not present, will remove stale json folder",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "- missing previous command file /Users/devianted/Documents/antigravity/splendid-darwin/app/.cxx/ndkBuild/debug/armeabi-v7a/build_command.txt, will remove stale json folder",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "- command changed from previous, will remove stale json folder",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "removing stale contents from \u0027/Users/devianted/Documents/antigravity/splendid-darwin/app/.cxx/ndkBuild/debug/armeabi-v7a\u0027",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "created folder \u0027/Users/devianted/Documents/antigravity/splendid-darwin/app/.cxx/ndkBuild/debug/armeabi-v7a\u0027",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "executing ndkBuild Executable : /Users/devianted/android-ndk-r14b/ndk-build\narguments : \nNDK_PROJECT_PATH\u003dnull\nAPP_BUILD_SCRIPT\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk\nNDK_APPLICATION_MK\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Application.mk\nAPP_ABI\u003darmeabi-v7a\nNDK_ALL_ABIS\u003darmeabi-v7a\nNDK_DEBUG\u003d1\nAPP_PLATFORM\u003dandroid-9\nNDK_OUT\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/build/intermediates/ndkBuild/debug/obj\nNDK_LIBS_OUT\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/build/intermediates/ndkBuild/debug/lib\nAPP_PLATFORM\u003dandroid-10\nAPP_ABI\u003darmeabi-v7a\nAPP_STL\u003dc++_static\nAPP_OPTIM\u003drelease\nV\u003d1\nAPP_SHORT_COMMANDS\u003dfalse\nLOCAL_SHORT_COMMANDS\u003dfalse\n-B\n-n\njvmArgs : \n\n",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "Executable : /Users/devianted/android-ndk-r14b/ndk-build\narguments : \nNDK_PROJECT_PATH\u003dnull\nAPP_BUILD_SCRIPT\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk\nNDK_APPLICATION_MK\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Application.mk\nAPP_ABI\u003darmeabi-v7a\nNDK_ALL_ABIS\u003darmeabi-v7a\nNDK_DEBUG\u003d1\nAPP_PLATFORM\u003dandroid-9\nNDK_OUT\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/build/intermediates/ndkBuild/debug/obj\nNDK_LIBS_OUT\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/build/intermediates/ndkBuild/debug/lib\nAPP_PLATFORM\u003dandroid-10\nAPP_ABI\u003darmeabi-v7a\nAPP_STL\u003dc++_static\nAPP_OPTIM\u003drelease\nV\u003d1\nAPP_SHORT_COMMANDS\u003dfalse\nLOCAL_SHORT_COMMANDS\u003dfalse\n-B\n-n\njvmArgs : \n\n",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  },
+  {
+    "level": "INFO",
+    "message": "JSON generation completed with problem. Exception: Build command failed.\nError while executing process /Users/devianted/android-ndk-r14b/ndk-build with arguments {NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Application.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-9 NDK_OUT\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003d/Users/devianted/Documents/antigravity/splendid-darwin/app/build/intermediates/ndkBuild/debug/lib APP_PLATFORM\u003dandroid-10 APP_ABI\u003darmeabi-v7a APP_STL\u003dc++_static APP_OPTIM\u003drelease V\u003d1 APP_SHORT_COMMANDS\u003dfalse LOCAL_SHORT_COMMANDS\u003dfalse -B -n}\nAndroid NDK: Host \u0027awk\u0027 tool is outdated. Please define NDK_HOST_AWK to point to Gawk or Nawk !    \n\n/Users/devianted/android-ndk-r14b/build/core/init.mk:391: *** Android NDK: Aborting.    .  Stop.\n",
+    "file": "/Users/devianted/Documents/antigravity/splendid-darwin/app/src/main/jni/Android.mk",
+    "tag": "debug|armeabi-v7a"
+  }
+]

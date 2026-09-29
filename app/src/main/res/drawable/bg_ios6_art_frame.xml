@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Classic iOS 6 Album Art Jewel Case Frame -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer drop shadow layer -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="4dp" />
+            <solid android:color="#050608" />
+        </shape>
+    </item>
+    <!-- Crisp white photo border -->
+    <item
+        android:left="2dp"
+        android:top="2dp"
+        android:right="2dp"
+        android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="3dp" />
+            <gradient
+                android:startColor="#ffffff"
+                android:endColor="#d0d5dc"
+                android:angle="270" />
+            <stroke
+                android:width="1dp"
+                android:color="#8a909b" />
+        </shape>
+    </item>
+    <!-- Inner bezel border around artwork -->
+    <item
+        android:left="5dp"
+        android:top="5dp"
+        android:right="5dp"
+        android:bottom="5dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#000000" />
+            <stroke
+                android:width="1dp"
+                android:color="#40454e" />
+        </shape>
+    </item>
+</layer-list>

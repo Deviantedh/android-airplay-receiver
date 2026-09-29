@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Floating Liquid Glass Control Dock (CarPlay style) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="#283344"
+        android:centerColor="#1a202c"
+        android:endColor="#11151e"
+        android:angle="270" />
+    <stroke
+        android:width="1dp"
+        android:color="#475672" />
+    <corners android:radius="28dp" />
+</shape>

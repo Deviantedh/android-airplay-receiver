@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Classic iPod touch Glossy Rounded Header Button -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="4dp" />
+            <gradient
+                android:startColor="#0a0b0e"
+                android:centerColor="#14161b"
+                android:endColor="#22252e"
+                android:angle="270" />
+            <stroke
+                android:width="1dp"
+                android:color="#363a45" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="4dp" />
+            <gradient
+                android:startColor="#505664"
+                android:centerColor="#262931"
+                android:endColor="#15171c"
+                android:angle="270" />
+            <stroke
+                android:width="1dp"
+                android:color="#626978" />
+        </shape>
+    </item>
+</selector>
