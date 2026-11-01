@@ -108,7 +108,7 @@ void mdns_announce(mdns_ctx_t *ctx,
 
     /* Send 3 gratuitous announcements with 1-second spacing (RFC 6762 §8.3) */
     for (int i = 0; i < 3; i++) {
-        service_announce_send(ctx->sock, hostname, hw_addr, port, ctx->iface_addr);
+        service_announce_send(ctx->sock, hostname, hw_addr, port, ctx->iface_addr, NULL);
         if (i < 2) sleep(1);
     }
     LOGI("mDNS announced '%s' on port %u", hostname, port);
@@ -129,16 +129,18 @@ void mdns_loop(mdns_ctx_t *ctx) {
         if (!ctx->running) break;
 
         if (pr > 0 && (pfd.revents & POLLIN)) {
+            slen = sizeof(sender);
             ssize_t len = recvfrom(ctx->sock, buf, sizeof(buf), 0,
                                    (struct sockaddr *)&sender, &slen);
             if (len > 0) {
-                /* Reply if this query targets our service */
+                /* Reply directly to sender (unicast) AND multicast */
                 service_announce_handle_query(ctx->sock,
                                               buf, (size_t)len,
                                               ctx->hostname,
                                               ctx->hw_addr,
                                               ctx->port,
-                                              ctx->iface_addr);
+                                              ctx->iface_addr,
+                                              &sender);
             }
         }
 
@@ -148,7 +150,7 @@ void mdns_loop(mdns_ctx_t *ctx) {
                 heartbeat_ticks = 0;
                 if (ctx->hostname[0] != '\0') {
                     service_announce_send(ctx->sock, ctx->hostname, ctx->hw_addr,
-                                          ctx->port, ctx->iface_addr);
+                                          ctx->port, ctx->iface_addr, NULL);
                 }
             }
         }

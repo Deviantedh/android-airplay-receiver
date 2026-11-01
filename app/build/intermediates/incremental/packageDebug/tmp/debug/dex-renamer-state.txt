@@ -1,4 +1,0 @@
-#Wed Sep 30 02:41:32 MSK 2026
-base.0=/Users/devianted/Documents/antigravity/splendid-darwin/app/build/intermediates/dex/debug/out/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

@@ -267,11 +267,13 @@ public class AirPlayService extends Service implements AirPlayNative.Listener {
 
     @Override
     public void onProgress(int elapsed, int duration) {
-        elapsedSec  = elapsed;
-        durationSec = duration;
+        elapsedSec = elapsed;
+        if (duration > 0) {
+            durationSec = duration;
+        }
         Intent i = new Intent(ACTION_PROGRESS);
-        i.putExtra(EXTRA_ELAPSED,  elapsed);
-        i.putExtra(EXTRA_DURATION, duration);
+        i.putExtra(EXTRA_ELAPSED,  elapsedSec);
+        i.putExtra(EXTRA_DURATION, durationSec);
         sendBroadcast(i);
     }
 

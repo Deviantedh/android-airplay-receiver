@@ -43,6 +43,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private int     elapsedSec    = 0;
     private boolean isUserSeeking = false;
 
+    /* Current displayed state cache for seamless orientation changes */
+    private String  curTitle      = "AirPlay";
+    private String  curArtist     = "AirPlay Audio";
+    private String  curAlbum      = "Receiver";
+    private Bitmap  curArtwork    = null;
+    private String  curStatusText = "○ Ожидание…";
+
     /* ── BroadcastReceiver ────────────────────────────────────────────── */
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -54,17 +61,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 String title  = intent.getStringExtra(AirPlayService.EXTRA_TITLE);
                 String artist = intent.getStringExtra(AirPlayService.EXTRA_ARTIST);
                 String album  = intent.getStringExtra(AirPlayService.EXTRA_ALBUM);
-                int newDur = intent.getIntExtra(AirPlayService.EXTRA_DURATION, 0);
+                int newDur    = intent.getIntExtra(AirPlayService.EXTRA_DURATION, 0);
                 if (newDur > 0) durationSec = newDur;
-                elapsedSec  = intent.getIntExtra(AirPlayService.EXTRA_ELAPSED, 0);
+                elapsedSec    = intent.getIntExtra(AirPlayService.EXTRA_ELAPSED, 0);
 
-                titleView.setText(title != null && !title.isEmpty() ? title : "AirPlay");
-                artistView.setText(artist != null && !artist.isEmpty() ? artist : "AirPlay Audio");
-                albumView.setText(album != null && !album.isEmpty() ? album : "Receiver");
+                curTitle  = (title != null && !title.isEmpty()) ? title : "AirPlay";
+                curArtist = (artist != null && !artist.isEmpty()) ? artist : "AirPlay Audio";
+                curAlbum  = (album != null && !album.isEmpty()) ? album : "Receiver";
+                curStatusText = "● В эфире";
+                isPlaying = true;
 
-                titleView.setSelected(true);
-                artistView.setSelected(true);
-                albumView.setSelected(true);
+                if (titleView != null)  titleView.setText(curTitle);
+                if (artistView != null) artistView.setText(curArtist);
+                if (albumView != null)  albumView.setText(curAlbum);
+                if (statusView != null) statusView.setText(curStatusText);
 
                 if (durationSec > 0) {
                     seekBar.setMax(durationSec);
@@ -77,9 +87,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     seekBar.setProgress(elapsedSec);
                     timeElapsed.setText(formatTime(elapsedSec));
                 }
-                isPlaying = true;
                 updatePlayPauseIcon();
-                statusView.setText("● В эфире");
 
             } else if (AirPlayService.ACTION_PROGRESS.equals(action)) {
                 int elapsed = intent.getIntExtra(AirPlayService.EXTRA_ELAPSED, 0);
@@ -104,42 +112,36 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 byte[] data = intent.getByteArrayExtra(AirPlayService.EXTRA_ARTWORK);
                 if (data != null && data.length > 0) {
                     Bitmap bmp = decodeSampled(data, 320, 320);
-                    if (bmp != null) artView.setImageBitmap(bmp);
+                    if (bmp != null) {
+                        curArtwork = bmp;
+                        if (artView != null) artView.setImageBitmap(bmp);
+                    }
                 }
 
             } else if (AirPlayService.ACTION_CONNECTED.equals(action)) {
-                statusView.setText("● В эфире");
+                curStatusText = "● В эфире";
                 isPlaying = true;
+                if (statusView != null) statusView.setText(curStatusText);
                 updatePlayPauseIcon();
 
             } else if (AirPlayService.ACTION_DISCONNECTED.equals(action)) {
-                statusView.setText("○ Ожидание…");
-                // Retain last album artwork, track title, artist, and album on screen
+                curStatusText = "○ Ожидание…";
                 isPlaying = false;
+                if (statusView != null) statusView.setText(curStatusText);
                 updatePlayPauseIcon();
 
             } else if (AirPlayService.ACTION_PLAY_STATE.equals(action)) {
                 isPlaying = intent.getBooleanExtra(AirPlayService.EXTRA_PLAYING, false);
-                statusView.setText(isPlaying ? "● В эфире" : "○ Пауза");
+                curStatusText = isPlaying ? "● В эфире" : "○ Пауза";
+                if (statusView != null) statusView.setText(curStatusText);
                 updatePlayPauseIcon();
             }
         }
     };
 
-    /* ── Lifecycle ───────────────────────────────────────────────────── */
+    /* ── View Setup & Rendering ───────────────────────────────────────── */
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Fullscreen immersive mode (no title, no system bar)
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-        setContentView(R.layout.activity_main);
-
+    private void initViews() {
         artView       = (ImageView)   findViewById(R.id.art);
         titleView     = (TextView)    findViewById(R.id.track_title);
         artistView    = (TextView)    findViewById(R.id.track_artist);
@@ -157,6 +159,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btnPlayPause.setOnClickListener(this);
         btnNext.setOnClickListener(this);
         if (btnBack != null) btnBack.setOnClickListener(this);
+
+        if (titleView != null)  titleView.setSelected(true);
+        if (artistView != null) artistView.setSelected(true);
+        if (albumView != null)  albumView.setSelected(true);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -181,13 +187,64 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 elapsedSec = sb.getProgress();
             }
         });
+    }
 
-        titleView.setSelected(true);
-        artistView.setSelected(true);
-        albumView.setSelected(true);
+    private void renderCurrentState() {
+        if (titleView != null)  titleView.setText(curTitle);
+        if (artistView != null) artistView.setText(curArtist);
+        if (albumView != null)  albumView.setText(curAlbum);
+        if (statusView != null) statusView.setText(curStatusText);
+
+        if (artView != null) {
+            if (curArtwork != null) {
+                artView.setImageBitmap(curArtwork);
+            } else {
+                artView.setImageResource(R.drawable.art_placeholder);
+            }
+        }
+
+        if (durationSec > 0) {
+            seekBar.setMax(durationSec);
+            timeTotal.setText("-" + formatTime(Math.max(0, durationSec - elapsedSec)));
+        } else {
+            seekBar.setMax(1000);
+            timeTotal.setText("-:--");
+        }
+        if (!isUserSeeking) {
+            seekBar.setProgress(elapsedSec);
+            timeElapsed.setText(formatTime(elapsedSec));
+        }
+        updatePlayPauseIcon();
+    }
+
+    /* ── Lifecycle ───────────────────────────────────────────────────── */
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Fullscreen immersive mode (no title, no system bar)
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        setContentView(R.layout.activity_main);
+        initViews();
+        renderCurrentState();
 
         // Start AirPlay foreground service
         startService(new Intent(this, AirPlayService.class));
+    }
+
+    @Override
+    public void onConfigurationChanged(android.content.res.Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Switch between portrait and landscape layouts smoothly without restarting Activity
+        setContentView(R.layout.activity_main);
+        initViews();
+        renderCurrentState();
+        sendBroadcast(new Intent(AirPlayService.ACTION_REQUEST_STATE));
     }
 
     @Override

@@ -1,1 +1,0 @@
-/Users/devianted/android-ndk-r14b/build/core/init.mk:391: *** Android NDK: Aborting.    .  Stop.

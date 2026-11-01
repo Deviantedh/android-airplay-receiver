@@ -598,16 +598,27 @@ static void handle_set_parameter(rtsp_session_t *s, const req_t *req) {
 static void handle_flush(rtsp_session_t *s, const req_t *req) {
     char auth[512];
     build_auth_headers(s, req, auth, sizeof(auth));
-    s->elapsed_sec = 0;
+    /* Do NOT reset elapsed_sec here so pauses do not wipe playback time! */
     if (s->rtp && s->rtp->osl) {
         osl_flush(s->rtp->osl);
     }
     send_response(s->conn_fd, req->cseq, 200, auth, NULL);
 }
 
+static void handle_pause(rtsp_session_t *s, const req_t *req) {
+    char auth[512];
+    build_auth_headers(s, req, auth, sizeof(auth));
+    s->playing = 0;
+    if (s->cb.on_play_state) s->cb.on_play_state(0, s->cb.userdata);
+    send_response(s->conn_fd, req->cseq, 200, auth, NULL);
+    LOGI("RTSP PAUSE handled -> paused state notified");
+}
+
 static void handle_teardown(rtsp_session_t *s, const req_t *req) {
     char auth[512];
     build_auth_headers(s, req, auth, sizeof(auth));
+    s->playing = 0;
+    if (s->cb.on_play_state) s->cb.on_play_state(0, s->cb.userdata);
     send_response(s->conn_fd, req->cseq, 200, auth, NULL);
 }
 
@@ -624,9 +635,14 @@ rtsp_session_t *rtsp_session_create(int conn_fd,
     if (cb) s->cb = *cb;
     s->rsakey = rsakey;
     if (hw_addr) memcpy(s->hw_addr, hw_addr, 6);
-    struct timeval tv = { .tv_sec = 20, .tv_usec = 0 };
-    setsockopt(conn_fd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
-    setsockopt(conn_fd, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
+
+    /*
+     * Keepalive: Never kill the RTSP session when paused!
+     * AirPlay clients idle indefinitely while paused; SO_KEEPALIVE ensures
+     * stale dead connections are dropped while valid paused sessions persist.
+     */
+    int keepalive = 1;
+    setsockopt(conn_fd, SOL_SOCKET, SO_KEEPALIVE, &keepalive, sizeof(keepalive));
 
     struct sockaddr_in peer;
     socklen_t plen = sizeof(peer);
@@ -673,6 +689,7 @@ void rtsp_session_handle(rtsp_session_t *s) {
         else if (!strcmp(req.method, "RECORD"))        handle_record(s, &req);
         else if (!strcmp(req.method, "SET_PARAMETER")) handle_set_parameter(s, &req);
         else if (!strcmp(req.method, "FLUSH"))         handle_flush(s, &req);
+        else if (!strcmp(req.method, "PAUSE"))         handle_pause(s, &req);
         else if (!strcmp(req.method, "TEARDOWN")) {
             handle_teardown(s, &req);
             if (req.body) free(req.body);
@@ -774,6 +791,16 @@ static uint16_t resolve_dacp_port(const char *dacp_id) {
     dest.sin_port        = htons(5353);
     dest.sin_addr.s_addr = inet_addr("224.0.0.251");
     sendto(sock, q, qlen, 0, (struct sockaddr *)&dest, sizeof(dest));
+
+    /* Also send direct unicast to client IP in case multicast is filtered */
+    if (g_last_client_ip[0] != '\0') {
+        struct sockaddr_in udest;
+        memset(&udest, 0, sizeof(udest));
+        udest.sin_family      = AF_INET;
+        udest.sin_port        = htons(5353);
+        inet_aton(g_last_client_ip, &udest.sin_addr);
+        sendto(sock, q, qlen, 0, (struct sockaddr *)&udest, sizeof(udest));
+    }
 
     struct pollfd pfd = { .fd = sock, .events = POLLIN };
     uint16_t found_port = 0;

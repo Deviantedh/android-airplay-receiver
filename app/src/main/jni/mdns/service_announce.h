@@ -9,6 +9,8 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#include <netinet/in.h>
+
 /**
  * Build and send PTR + SRV + TXT records for both AirPlay service types.
  *
@@ -16,13 +18,15 @@
  * @param hostname    device name without .local
  * @param hw_addr     6-byte MAC, used as "AABBCCDDEEFF@<hostname>" prefix
  * @param port        RTSP listening port
- * @param iface_addr  local IPv4 (used for A record in the additional section)
+ * @param iface_addr  local IPv4 (used for A record)
+ * @param sender      Optional sender sockaddr for direct unicast reply
  */
 void service_announce_send(int sock,
                            const char *hostname,
                            const uint8_t hw_addr[6],
                            uint16_t port,
-                           const char *iface_addr);
+                           const char *iface_addr,
+                           const struct sockaddr_in *sender);
 
 /**
  * Inspect an incoming mDNS packet and send a unicast/multicast reply if it
@@ -33,4 +37,5 @@ void service_announce_handle_query(int sock,
                                    const char *hostname,
                                    const uint8_t hw_addr[6],
                                    uint16_t port,
-                                   const char *iface_addr);
+                                   const char *iface_addr,
+                                   const struct sockaddr_in *sender);

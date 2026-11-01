@@ -1,0 +1,17 @@
+# Build & Dependency artifacts
+.gradle/
+build/
+app/build/
+app/.cxx/
+
+# Local configuration
+local.properties
+
+# Binary outputs
+*.apk
+*.dex
+
+# OS & IDE
+.DS_Store
+*.iml
+.idea/
